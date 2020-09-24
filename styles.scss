@@ -1,0 +1,122 @@
+$orange : rgb(238,147,39);
+$light-grey : rgb(164,164,164);
+$lighter-grey: rgb(210,210,210);
+$dark-grey : rgb(50, 50, 50);
+$white : rgb(255, 255, 255);
+$black : rgb(0, 0, 0);
+$custom-white: #F2F2F2;
+$custom-blue: #3AAFA9;
+$custom-black: #182628;
+$custom-yellow: #FBAF00;
+
+* {
+  font-family: Helvetica;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: $custom-blue;
+}
+
+header {
+  width: min(1200px, 100vw);
+  margin: auto;
+  height: 10vh;
+  color: $custom-white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid $custom-yellow;
+  h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  
+  section {
+    box-sizing: content-box;
+    border: 12px solid $light-grey;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.7);
+    border-radius: 10px;
+    white-space: 0;
+    width: 290px;
+    height: 430px;
+    padding: 5px;
+    background: $black;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeats(6, 1fr);
+  }
+}
+
+p {
+  height: 70px;
+  display: block;
+  // direction: rtl;
+  text-align: right;
+  background: $black;
+  color: $white;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  padding: 5px;
+  font-size: 3rem;
+  line-height: 70px;
+  overflow: hidden;
+}
+
+button {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: auto;
+  border: 0;
+  border-radius: 35px;
+  font-size: 1.5rem;
+  &:focus {
+    outline:0;
+  }
+}
+
+img {
+  position: absolute;
+  height: 600px;
+  margin: auto;
+}
+.number, .decimal {
+  background-color: $dark-grey;
+  color:$white;
+  &:hover, &:active &:focus {
+    background-color: $light-grey;
+  }
+}
+.adjuster {
+  background-color: $light-grey;
+  color:$black;
+  &:hover, &:active &:focus {
+    background-color: $lighter-grey;
+  }
+}
+.operator, .equals{
+  background-color: $orange;
+  color:$white;
+  &:hover, &:active &:focus {
+    background-color: $white;
+    color: $orange;
+  }
+}
+
+#number0 {
+  width: 130px;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+

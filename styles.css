@@ -1,0 +1,111 @@
+* {
+  font-family: Helvetica;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: #3AAFA9;
+}
+
+header {
+  width: min(1200px, 100vw);
+  margin: auto;
+  height: 10vh;
+  color: #F2F2F2;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #FBAF00;
+}
+header h1 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+main section {
+  box-sizing: content-box;
+  border: 12px solid #a4a4a4;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  white-space: 0;
+  width: 290px;
+  height: 430px;
+  padding: 5px;
+  background: black;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeats(6, 1fr);
+}
+
+p {
+  height: 70px;
+  display: block;
+  text-align: right;
+  background: black;
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  padding: 5px;
+  font-size: 3rem;
+  line-height: 70px;
+  overflow: hidden;
+}
+
+button {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: auto;
+  border: 0;
+  border-radius: 35px;
+  font-size: 1.5rem;
+}
+button:focus {
+  outline: 0;
+}
+
+img {
+  position: absolute;
+  height: 600px;
+  margin: auto;
+}
+
+.number, .decimal {
+  background-color: #323232;
+  color: white;
+}
+.number:hover, .number:active .number:focus, .decimal:hover, .number:active .decimal:focus, .decimal:active .number:focus, .decimal:active .decimal:focus {
+  background-color: #a4a4a4;
+}
+
+.adjuster {
+  background-color: #a4a4a4;
+  color: black;
+}
+.adjuster:hover, .adjuster:active .adjuster:focus {
+  background-color: #d2d2d2;
+}
+
+.operator, .equals {
+  background-color: #ee9327;
+  color: white;
+}
+.operator:hover, .operator:active .operator:focus, .equals:hover, .operator:active .equals:focus, .equals:active .operator:focus, .equals:active .equals:focus {
+  background-color: white;
+  color: #ee9327;
+}
+
+#number0 {
+  width: 130px;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
