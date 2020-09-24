@@ -30,6 +30,7 @@ let calculatedNumber = 0;
   numberButtons.forEach((button) => {
     button.addEventListener('click', (event) => {
       if (checkCurrentLength()) {
+        // check if the current number is a 0, seeing if the current input is a 0. 
         checkInputEmpty() ? currentNumber = event.target.innerHTML : currentNumber += event.target.innerHTML;
         updateDisplay(currentNumber);
         updateClearButton();
@@ -48,6 +49,7 @@ operatorButtons.forEach((button) => {
 
 //---- EQUALS BUTTON CLICKED ----//
 equalsButton.addEventListener('click', () => {
+  currentNumber === "" ? currentNumber = memoryNumber : "";
   switch (memoryOperator) {
     case "plus" :
       calculatedNumber = memoryNumber + parseFloat(currentNumber);
@@ -67,7 +69,7 @@ equalsButton.addEventListener('click', () => {
 });
 
 //---- DECIMAL BUTTON CLICKED ----//
-decimalButton.addEventListener('click', (event) => {
+decimalButton.addEventListener('click', () => {
   currentNumber.includes(".") ? '' : currentNumber += ".";
   updateDisplay(currentNumber);
 });
@@ -86,6 +88,7 @@ clearButton.addEventListener('click', () => {
 
 //---- REVERSAL BUTTON CLICKED ----//
 reverseButton.addEventListener('click', () => {
+  currentNumber = display.innerHTML;
   currentNumber.includes("-") ? currentNumber = currentNumber.replace("-", "") : currentNumber = "-" + currentNumber;
   updateDisplay(currentNumber);
 });

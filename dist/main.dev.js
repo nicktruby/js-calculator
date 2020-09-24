@@ -45,6 +45,7 @@ var calculatedNumber = 0; //---- NUMBER BUTTON CLICKED ----////
 numberButtons.forEach(function (button) {
   button.addEventListener('click', function (event) {
     if (checkCurrentLength()) {
+      // check if the current number is a 0, seeing if the current input is a 0. 
       checkInputEmpty() ? currentNumber = event.target.innerHTML : currentNumber += event.target.innerHTML;
       updateDisplay(currentNumber);
       updateClearButton();
@@ -61,6 +62,8 @@ operatorButtons.forEach(function (button) {
 }); //---- EQUALS BUTTON CLICKED ----//
 
 equalsButton.addEventListener('click', function () {
+  currentNumber === "" ? currentNumber = memoryNumber : "";
+
   switch (memoryOperator) {
     case "plus":
       calculatedNumber = memoryNumber + parseFloat(currentNumber);
@@ -84,7 +87,7 @@ equalsButton.addEventListener('click', function () {
   updateDisplay(calculatedNumber);
 }); //---- DECIMAL BUTTON CLICKED ----//
 
-decimalButton.addEventListener('click', function (event) {
+decimalButton.addEventListener('click', function () {
   currentNumber.includes(".") ? '' : currentNumber += ".";
   updateDisplay(currentNumber);
 }); //---- CLEAR BUTTON CLICKED ----//
@@ -101,6 +104,7 @@ clearButton.addEventListener('click', function () {
 }); //---- REVERSAL BUTTON CLICKED ----//
 
 reverseButton.addEventListener('click', function () {
+  currentNumber = display.innerHTML;
   currentNumber.includes("-") ? currentNumber = currentNumber.replace("-", "") : currentNumber = "-" + currentNumber;
   updateDisplay(currentNumber);
 }); //---- PERCENT BUTTON CLICKED ----//
