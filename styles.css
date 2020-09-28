@@ -37,25 +37,33 @@ main section {
   border-radius: 10px;
   white-space: 0;
   width: 290px;
-  height: 430px;
+  height: 550px;
   padding: 5px;
   background: black;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeats(6, 1fr);
+  grid-template-rows: 2.2fr repeat(5, 1fr);
+}
+
+.display__wrapper {
+  background: black;
+  color: white;
+  grid-column: 1/5;
+  height: 200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 p {
-  height: 70px;
-  display: block;
-  text-align: right;
+  font-family: "Roboto Mono", monospace;
   background: black;
   color: white;
-  grid-column-start: 1;
-  grid-column-end: 5;
+  overflow-wrap: break-word;
+  text-align: right;
+  bottom: 0;
   padding: 5px;
   font-size: 3rem;
-  line-height: 70px;
   overflow: hidden;
 }
 
@@ -99,6 +107,11 @@ img {
   color: white;
 }
 .operator:hover, .operator:active .operator:focus, .equals:hover, .operator:active .equals:focus, .equals:active .operator:focus, .equals:active .equals:focus {
+  background-color: white;
+  color: #ee9327;
+}
+
+.active-operator {
   background-color: white;
   color: #ee9327;
 }

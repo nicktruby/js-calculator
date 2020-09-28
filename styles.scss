@@ -48,27 +48,33 @@ main {
     border-radius: 10px;
     white-space: 0;
     width: 290px;
-    height: 430px;
+    height: 550px;
     padding: 5px;
     background: $black;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeats(6, 1fr);
+    grid-template-rows: 2.2fr repeat(5, 1fr);
   }
 }
 
-p {
-  height: 70px;
-  display: block;
-  // direction: rtl;
-  text-align: right;
+.display__wrapper{
   background: $black;
   color: $white;
-  grid-column-start: 1;
-  grid-column-end: 5;
+  grid-column: 1 / 5;
+  height: 200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+p {
+  font-family: 'Roboto Mono', monospace;
+  background: $black;
+  color: $white;
+  overflow-wrap: break-word;
+  text-align: right;
+  bottom: 0;
   padding: 5px;
   font-size: 3rem;
-  line-height: 70px;
   overflow: hidden;
 }
 
@@ -111,6 +117,11 @@ img {
     background-color: $white;
     color: $orange;
   }
+}
+
+.active-operator {
+  background-color: $white;
+  color: $orange;
 }
 
 #number0 {

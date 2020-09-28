@@ -8,23 +8,49 @@ const percentButton = document.querySelector('#percent');
 const equalsButton = document.querySelector('#equals');
 const display = document.querySelector('#display');
 
-//---- REUSABLE FUNCTIONS ----////
-const checkCurrentLength = () => currentNumber.length < 9;
-const checkInputEmpty = () => currentNumber === "";
-const checkMemory = () => display.innerHTML === memoryNumber;
-const updateDisplay = (number) => display.innerHTML = number;
-const updateClearButton = () => currentNumber === "" ? clearButton.innerHTML = "AC" : clearButton.innerHTML = "C";
-const clearAll = () => {
-  currentNumber = "";
-  memoryOperator = "";
-  memoryNumber = "";
-}
-
 //---- VARIABLES ----////
 let currentNumber = "";
 let memoryNumber = 0;
 let memoryOperator = "";
 let calculatedNumber = 0;
+let previousCurrentNumber = "";
+
+//---- REUSABLE FUNCTIONS ----////
+const checkCurrentLength = () => currentNumber.length < 27;
+const checkInputEmpty = () => currentNumber === "";
+const checkMemory = () => display.innerHTML === memoryNumber;
+const updateDisplay = (number) => display.innerHTML = number;
+const updateClearButton = (clearMessage) => clearButton.innerHTML = clearMessage;
+const clearAll = () => {
+  updateDisplay("0");
+  currentNumber = "";
+  previousCurrentNumber = "";
+  memoryOperator = "";
+  memoryNumber = 0;
+  calculatedNumber = 0;}
+
+const executeCalculation = (memNum, operator, curNum) => {
+  operatorButtons.forEach((button) => {
+    button.classList.remove('active-operator');
+  });
+  if (curNum === "") {
+    previousCurrentNumber === "" ? curNum = 0 : curNum = previousCurrentNumber;;
+  } 
+  switch (operator) {
+    case "plus" : calculatedNumber = memNum + parseFloat(curNum);
+      break
+    case "minus" : calculatedNumber = memNum - parseFloat(curNum);
+      break
+    case "times" : calculatedNumber = memNum * parseFloat(curNum);
+      break
+    case "divide" : calculatedNumber = memNum / parseFloat(curNum);
+      break
+  };
+  updateDisplay(calculatedNumber);
+  memoryNumber = calculatedNumber;
+  curNum === 0 ? previousCurrentNumber = memNum : previousCurrentNumber = curNum;
+  currentNumber = "";
+}
 
 //---- NUMBER BUTTON CLICKED ----////
   numberButtons.forEach((button) => {
@@ -33,7 +59,7 @@ let calculatedNumber = 0;
         // check if the current number is a 0, seeing if the current input is a 0. 
         checkInputEmpty() ? currentNumber = event.target.innerHTML : currentNumber += event.target.innerHTML;
         updateDisplay(currentNumber);
-        updateClearButton();
+        updateClearButton("C");
       }
     });
   });
@@ -41,31 +67,24 @@ let calculatedNumber = 0;
 //---- OPERATOR BUTTON CLICKED ----//
 operatorButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
+    operatorButtons.forEach((button) => {
+      button.classList.remove('active-operator');
+    });
+    if (!currentNumber) {
+      button.classList.add('active-operator');
+      memoryOperator = event.target.value;
+    } else {    
     memoryNumber = parseFloat(currentNumber);
     memoryOperator = event.target.value;
+    button.classList.add('active-operator');
     currentNumber = "";
+    }
   });
 });
 
 //---- EQUALS BUTTON CLICKED ----//
 equalsButton.addEventListener('click', () => {
-  currentNumber === "" ? currentNumber = memoryNumber : "";
-  switch (memoryOperator) {
-    case "plus" :
-      calculatedNumber = memoryNumber + parseFloat(currentNumber);
-      break
-    case "minus" : 
-      calculatedNumber = memoryNumber - parseFloat(currentNumber);
-      break
-    case "times" : 
-      calculatedNumber = memoryNumber * parseFloat(currentNumber);
-      break
-    case "divide" :
-      calculatedNumber = memoryNumber / parseFloat(currentNumber);
-      break
-  };
-  memoryNumber = calculatedNumber;
-  updateDisplay(calculatedNumber);
+  executeCalculation(memoryNumber, memoryOperator, currentNumber);
 });
 
 //---- DECIMAL BUTTON CLICKED ----//
@@ -76,13 +95,18 @@ decimalButton.addEventListener('click', () => {
 
 //---- CLEAR BUTTON CLICKED ----//
 clearButton.addEventListener('click', () => {
-  if (memoryOperator !== "" && currentNumber === "") {
-    currentNumber = memoryNumber;
+  if (clearButton.innerHTML === "AC") {
+    clearAll();
+  } else if (currentNumber) {
+    currentNumber = "";
+    updateDisplay("0");
+    updateClearButton("AC");
+  } else if (memoryOperator) {
+    operatorButtons.forEach((button) => {
+      button.classList.remove('active-operator');
+    });
     memoryOperator = "";
-  } else {
-  clearButton.innerHTML = "C" ? currentNumber = "" : clearAll();
-  updateDisplay("0");
-  updateClearButton();
+    updateClearButton("AC");
   }
 });
 
