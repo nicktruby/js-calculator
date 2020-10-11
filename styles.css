@@ -1,16 +1,19 @@
 * {
   font-family: Helvetica;
-  font-weight: 400;
+  font-weight: 300;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+html {
   background: #3AAFA9;
 }
 
 header {
   width: min(1200px, 100vw);
   margin: auto;
-  height: 10vh;
+  height: 8vh;
   color: #F2F2F2;
   text-align: center;
   display: flex;
@@ -28,21 +31,20 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 92vh;
 }
 main section {
   box-sizing: content-box;
   border: 12px solid #a4a4a4;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
   border-radius: 10px;
-  white-space: 0;
   width: 290px;
   height: 550px;
   padding: 5px;
   background: black;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 2.2fr repeat(5, 1fr);
+  grid-template-rows: auto repeat(5, 1fr);
 }
 
 .display__wrapper {
@@ -57,11 +59,8 @@ main section {
 
 p {
   font-family: "Roboto Mono", monospace;
-  background: black;
-  color: white;
   overflow-wrap: break-word;
   text-align: right;
-  bottom: 0;
   padding: 5px;
   font-size: 3rem;
   overflow: hidden;
@@ -78,12 +77,6 @@ button {
 }
 button:focus {
   outline: 0;
-}
-
-img {
-  position: absolute;
-  height: 600px;
-  margin: auto;
 }
 
 .number, .decimal {
@@ -116,7 +109,7 @@ img {
   color: #ee9327;
 }
 
-#number0 {
+.zero {
   width: 130px;
   text-align: center;
   grid-column-start: 1;
